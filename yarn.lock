@@ -6339,12 +6339,28 @@
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.2.0.tgz#756641adb587851b5ccb3e095daf27ae581c8406"
   integrity sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==
 
-"@urql/core@^4.2.0":
+"@urql/core@>=4.0.0", "@urql/core@^4.2.0":
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/@urql/core/-/core-4.2.2.tgz#c2b009373cb9084bbfa8ebc0177c854a76235b84"
   integrity sha512-TP1kheq9bnrEdnVbJqh0g0ZY/wfdpPeAzjiiDK+Tm+Pbi0O1Xdu6+fUJ/wJo5QpHZzkIyya4/AecG63e6scFqQ==
   dependencies:
     "@0no-co/graphql.web" "^1.0.1"
+    wonka "^6.3.2"
+
+"@urql/exchange-request-policy@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@urql/exchange-request-policy/-/exchange-request-policy-1.0.2.tgz#4612df4fc1d3a0db8a179df6c0dba69abfd59bf9"
+  integrity sha512-IEC7BQGe6y5Wx3XY5PUUKSaB2TQcYkdBPw1pvgQFd09HxHyizGiB1u2Ziupz2Rmf29Eu/ZlJyxIIHcpebIliWg==
+  dependencies:
+    "@urql/core" ">=4.0.0"
+    wonka "^6.3.2"
+
+"@urql/exchange-retry@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@urql/exchange-retry/-/exchange-retry-1.2.0.tgz#23d3ec711754e3c67a843e0106f2cabddff2e5ff"
+  integrity sha512-1O/biKiVhhn0EtvDF4UOvz325K4RrLupfL8rHcmqD2TBLv4qVDWQuzx4JGa1FfqjjRb+C9TNZ6w19f32Mq85Ug==
+  dependencies:
+    "@urql/core" ">=4.0.0"
     wonka "^6.3.2"
 
 "@urql/introspection@^0.3.2":
@@ -10669,7 +10685,7 @@ graphql-tag@^2.11.0:
   dependencies:
     tslib "^2.1.0"
 
-graphql-ws@^5.14.0:
+graphql-ws@^5.14.0, graphql-ws@^5.14.3:
   version "5.14.3"
   resolved "https://registry.yarnpkg.com/graphql-ws/-/graphql-ws-5.14.3.tgz#fb1fba011a0ae9c4e86d831cae2ec27955168b9a"
   integrity sha512-F/i2xNIVbaEF2xWggID0X/UZQa2V8kqKDPO8hwmu53bVOcTL7uNkxnexeEgSCVxYBQUTUNEI8+e4LO1FOhKPKQ==
