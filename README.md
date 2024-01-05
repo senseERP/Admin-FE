@@ -23,6 +23,14 @@ brew install pre-commit
 pre-commit install -t commit-msg
 ```
 
+## Graphql Codegen
+
+To generate the graphql types, run the following command:
+
+```bash
+yarn codegen
+```
+
 ## 🚀 Deployment
 
 Easily deploy your Next.js app with [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=github&utm_campaign=next-enterprise) by clicking the button below:

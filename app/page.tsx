@@ -1,24 +1,10 @@
-import { Metadata } from "next"
+"use client"
+
 import { Button } from "components/Button/Button"
 
-export const metadata: Metadata = {
-  title: "Next.js Enterprise Boilerplate",
-  twitter: {
-    card: "summary_large_image",
-  },
-  openGraph: {
-    url: "https://next-enterprise.vercel.app/",
-    images: [
-      {
-        width: 1200,
-        height: 630,
-        url: "https://raw.githubusercontent.com/Blazity/next-enterprise/main/project-logo.png",
-      },
-    ],
-  },
-}
-
 export default function Web() {
+  console.log("process.env.GRAPHQL_URL")
+  console.log(process.env.NEXT_PUBLIC_GRAPHQL_URL)
   return (
     <>
       <section className="bg-white dark:bg-gray-900">

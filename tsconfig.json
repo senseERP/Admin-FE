@@ -18,6 +18,9 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": ".",
+    "paths": {
+      "@graphql": ["__generated__/graphql/*"]
+    },
     "types": ["node", "jest", "@testing-library/jest-dom"],
     "plugins": [
       {
