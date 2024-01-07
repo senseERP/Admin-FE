@@ -1,5 +1,5 @@
 query Pokemons {
-  pokemons {
+  pokemons(limit: 10, skip: 0) {
     id
     name
   }

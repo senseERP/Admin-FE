@@ -1,5 +1,5 @@
 // codegen.ts
-import { CodegenConfig } from "@graphql-codegen/cli"
+import { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
   schema: "https://trygql.formidable.dev/graphql/basic-pokedex",
@@ -32,6 +32,8 @@ const config: CodegenConfig = {
         importOperationTypesFrom: "Operations",
         documentMode: "external",
         importDocumentNodeExternallyFrom: "./operations.ts",
+        //* must import urql from @urql/next
+        urqlImportFrom: "@urql/next",
       },
     },
     // schema
@@ -39,6 +41,6 @@ const config: CodegenConfig = {
       plugins: ["urql-introspection"],
     },
   },
-}
+};
 
-export default config
+export default config;

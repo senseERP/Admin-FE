@@ -2,5 +2,5 @@
   "tailwindCSS.experimental.classRegex": [
     ["cva(?:<[^>]*>)?(([^)]*))", "[\"'`]([^\"'`]*).*?[\"'`]", "(?:twMerge|twJoin)\\(([^\\);]*)[\\);]"]
   ],
-  "cSpell.words": ["Intelomics", "urql"]
+  "cSpell.words": ["Intelomics", "Pokemons", "urql"]
 }

@@ -1,13 +1,13 @@
-import { requestPolicyExchange } from "@urql/exchange-request-policy"
-import { retryExchange } from "@urql/exchange-retry"
-import { useMemo } from "react"
-import { cacheExchange, createClient, fetchExchange, ssrExchange } from "urql"
-import GraphqlConfig from "common/graphql-config"
-import { subscriptionExchange } from "./exchanges"
+import { requestPolicyExchange } from "@urql/exchange-request-policy";
+import { retryExchange } from "@urql/exchange-retry";
+import { cacheExchange, createClient, fetchExchange, ssrExchange } from "@urql/next";
+import { useMemo } from "react";
+import GraphqlConfig from "common/graphql-config";
+import { subscriptionExchange } from "./exchanges";
 
 export default function useURQLClient() {
   const [client, ssr] = useMemo(() => {
-    const ssr = ssrExchange()
+    const ssr = ssrExchange();
     const client = createClient({
       url: GraphqlConfig.url,
       exchanges: [
@@ -28,10 +28,10 @@ export default function useURQLClient() {
         subscriptionExchange,
       ],
       suspense: true,
-    })
+    });
 
-    return [client, ssr]
-  }, [])
+    return [client, ssr];
+  }, []);
 
-  return [client, ssr]
+  return [client, ssr] as [typeof client, typeof ssr];
 }

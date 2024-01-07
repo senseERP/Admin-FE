@@ -19,7 +19,7 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@graphql": ["__generated__/graphql/*"]
+      "@graphql/*": ["__generated__/graphql/*"]
     },
     "types": ["node", "jest", "@testing-library/jest-dom"],
     "plugins": [
