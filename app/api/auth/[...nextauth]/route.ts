@@ -1,22 +1,37 @@
-import AppPath from "app/router/app-path";
-import { env } from "env.mjs";
+import dayjs from "dayjs";
 import NextAuth, { NextAuthOptions } from "next-auth";
-import getClient from "services/urql/getClient";
+import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
+import {
+  LoginDocument,
+  LoginMutation,
+  LoginMutationVariables,
+  ProfileDocument,
+  ProfileQuery,
+  RefreshTokenDocument,
+  RefreshTokenMutation,
+  RefreshTokenMutationVariables,
+} from "@graphql/operations";
+import AppPath from "app/router/app-path";
+import AppConstants from "common/app-constants";
+import { SessionModel } from "common/types/auth";
+import { env } from "env.mjs";
+import getClient from "services/urql/getClient";
 
-// const refreshAccessToken = async (token: JWT): Promise<JWT> => {
-//   const res = await client.mutation<RefreshTokenMutation, RefreshTokenMutationVariables>(RefreshTokenDocument, {
-//     input: {
-//       refreshToken: (token as any).refreshToken ?? "",
-//     },
-//   });
+const refreshAccessToken = async (token: JWT): Promise<JWT> => {
+  const client = getClient();
+  const res = await client.mutation<RefreshTokenMutation, RefreshTokenMutationVariables>(RefreshTokenDocument, {
+    input: {
+      refreshToken: (token as any).refreshToken ?? "",
+    },
+  });
 
-//   if (res.error) {
-//     return { ...token, error: AppConstant.REFRESH_TOKEN_ERROR };
-//   }
+  if (res.error) {
+    return { ...token, error: AppConstants.REFRESH_TOKEN_ERROR };
+  }
 
-//   return { ...token, id: res.data?.refreshToken.userId, ...res.data?.refreshToken };
-// };
+  return { ...token, id: res.data?.refreshTokenTenant.userId, ...res.data?.refreshTokenTenant };
+};
 
 export const config: NextAuthOptions = {
   pages: {
@@ -31,43 +46,47 @@ export const config: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        const client = await getClient();
+        const client = getClient();
 
-        // // login
-        // const res = await client.mutation<LoginMutation, LoginMutationVariables>(LoginDocument, {
-        //   input: {
-        //     username: credentials?.username ?? "",
-        //     password: credentials?.password ?? "",
-        //   },
-        // });
+        // login
+        const res = await client.mutation<LoginMutation, LoginMutationVariables>(LoginDocument, {
+          input: {
+            username: credentials?.username ?? "",
+            password: credentials?.password ?? "",
+          },
+        });
 
-        // if (res.error) {
-        //   return null;
-        // }
+        console.log("login", res.data, res.error);
 
-        // // fetch profile
-        // const fetchProfileResponse = await client.query<ProfileQuery>(
-        //   ProfileDocument,
-        //   {},
-        //   {
-        //     fetchOptions: {
-        //       headers: {
-        //         authorization: `Bearer ${res.data?.login.token}`,
-        //       },
-        //     },
-        //   }
-        // );
-        // if (fetchProfileResponse.error) {
-        //   return null;
-        // }
+        if (res.error) {
+          return null;
+        }
 
-        // return {
-        //   id: res.data?.login.userId,
-        //   ...res.data?.login,
-        //   ...fetchProfileResponse.data?.profile,
-        // } as SessionModel;
+        // fetch profile
+        const fetchProfileResponse = await client.query<ProfileQuery>(
+          ProfileDocument,
+          {},
+          {
+            fetchOptions: {
+              headers: {
+                authorization: `Bearer ${res.data?.loginTenant.token}`,
+              },
+            },
+          }
+        );
+        if (fetchProfileResponse.error) {
+          return null;
+        }
 
-        return null;
+        return {
+          id: res.data?.loginTenant.userId,
+          userId: res.data?.loginTenant.userId,
+          token: res.data?.loginTenant.token,
+          refreshToken: res.data?.loginTenant.refreshToken,
+          tokenExpires: res.data?.loginTenant.tokenExpires,
+          // ...res.data?.loginTenant,
+          // ...fetchProfileResponse.data?.profileTenant,
+        } as SessionModel;
       },
     }),
   ],
@@ -80,15 +99,14 @@ export const config: NextAuthOptions = {
   },
   callbacks: {
     async jwt({ token, user, account }) {
-      return { ...token, ...user };
-      // if (account && user) {
-      //   return { ...token, ...user };
-      // }
-      // const currentDate = dayjs().unix();
-      // const exp = dayjs((token as any).tokenExpires).unix();
-      // if (currentDate < exp) return token;
-      // // Refresh
-      // return await refreshAccessToken(token);
+      if (account && user) {
+        return { ...token, ...user };
+      }
+      const currentDate = dayjs().unix();
+      const exp = dayjs((token as any).tokenExpires).unix();
+      if (currentDate < exp) return token;
+      // Refresh
+      return await refreshAccessToken(token);
     },
     async session({ session, token }) {
       session.user = token as any;

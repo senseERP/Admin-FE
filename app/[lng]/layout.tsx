@@ -1,7 +1,7 @@
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { dir } from "i18next";
 import { languages } from "app/i18n/settings";
-import { Language } from "types/language";
+import { Language } from "common/types/language";
 
 import "@mantine/core/styles.css";
 import "styles/tailwind.css";

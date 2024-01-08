@@ -1,0 +1,33 @@
+mutation Login($input: LoginInput!) {
+  loginTenant(input: $input) {
+    userId
+    token
+    refreshToken
+    tenant
+  }
+}
+
+mutation RefreshToken($input: RefreshTokenInput!) {
+  refreshTokenTenant(input: $input) {
+    userId
+    token
+    refreshToken
+    tenant
+  }
+}
+
+query Profile {
+  profileTenant {
+    id
+    username
+    gender
+    dateOfBirth
+    firstName
+    lastName
+    fullName
+    email
+    emailConfirmed
+    address
+    phoneNumber
+  }
+}

@@ -1,4 +1,4 @@
-import { Language } from "types/language";
+import { Language } from "common/types/language";
 
 export const fallbackLng: Language = "en";
 export const languages: Language[] = [fallbackLng, "vi"];

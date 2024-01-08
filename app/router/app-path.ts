@@ -1,4 +1,4 @@
-import { Language } from "types/language";
+import { Language } from "common/types/language";
 
 function mergePath(path: string, lng?: Language) {
   if (!lng) {
