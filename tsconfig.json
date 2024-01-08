@@ -19,7 +19,8 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@graphql/*": ["__generated__/graphql/*"]
+      "@graphql/*": ["__generated__/graphql/*"],
+      "@shadcn/*": ["components/ui/*"]
     },
     "types": ["node", "jest", "@testing-library/jest-dom"],
     "plugins": [
