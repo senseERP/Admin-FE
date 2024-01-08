@@ -8,12 +8,15 @@ export const env = createEnv({
       .optional()
       .transform((value) => value === "true"),
     NEXT_PUBLIC_GRAPHQL_URL: z.string().url(),
+    NEXT_PUBLIC_GRAPHQL_WS_URL: z.string().url(),
   },
   client: {
     NEXT_PUBLIC_GRAPHQL_URL: z.string().url(),
+    NEXT_PUBLIC_GRAPHQL_WS_URL: z.string().url(),
   },
   runtimeEnv: {
     ANALYZE: process.env.ANALYZE,
     NEXT_PUBLIC_GRAPHQL_URL: process.env.NEXT_PUBLIC_GRAPHQL_URL,
+    NEXT_PUBLIC_GRAPHQL_WS_URL: process.env.NEXT_PUBLIC_GRAPHQL_WS_URL,
   },
 })

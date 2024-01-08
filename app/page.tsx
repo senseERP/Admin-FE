@@ -1,10 +1,6 @@
-"use client"
-
-import { Button } from "components/Button/Button"
+import { Button } from "@shadcn/button";
 
 export default function Web() {
-  console.log("process.env.GRAPHQL_URL")
-  console.log(process.env.NEXT_PUBLIC_GRAPHQL_URL)
   return (
     <>
       <section className="bg-white dark:bg-gray-900">
@@ -18,14 +14,13 @@ export default function Web() {
               Experience rapid UI development, AI-powered code reviews, and an extensive suite of tools for a smooth and
               enjoyable development process.
             </p>
-            <Button href="https://github.com/Blazity/next-enterprise" className="mr-3">
-              Get started
+            <Button className="mr-3" variant="default">
+              <a href="https://github.com/Blazity/next-enterprise">Get started</a>
             </Button>
-            <Button
-              href="https://vercel.com/new/git/external?repository-url=https://github.com/Blazity/next-enterprise"
-              intent="secondary"
-            >
-              Deploy Now
+            <Button variant="secondary">
+              <a href="https://vercel.com/new/git/external?repository-url=https://github.com/Blazity/next-enterprise">
+                Deploy Now
+              </a>
             </Button>
           </div>
         </div>
@@ -36,5 +31,5 @@ export default function Web() {
         </div>
       </section>
     </>
-  )
+  );
 }

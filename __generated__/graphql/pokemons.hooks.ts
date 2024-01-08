@@ -1,7 +1,7 @@
 import * as Types from './types';
 
 import * as Operations from './operations';
-import * as Urql from 'urql';
+import * as Urql from '@urql/next';
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 
