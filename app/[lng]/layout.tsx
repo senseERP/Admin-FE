@@ -12,24 +12,20 @@ export async function generateStaticParams() {
 
 export default function RootLayout({
   params,
-  dashboard,
-  login,
+  children,
 }: {
   params: {
-    lng: Language;
+    lng?: Language;
   };
-  dashboard: React.ReactNode;
-  login: React.ReactNode;
+  children: React.ReactNode;
 }) {
-  console.log(params);
-  const isLoggedIn = false;
   return (
-    <html lang={params.lng} dir={dir(params.lng)}>
+    <html lang={params?.lng ?? "en"} dir={dir(params?.lng ?? "en")}>
       <head>
         <ColorSchemeScript />
       </head>
       <body suppressHydrationWarning>
-        <MantineProvider>{isLoggedIn ? dashboard : login}</MantineProvider>
+        <MantineProvider>{children}</MantineProvider>
       </body>
     </html>
   );
