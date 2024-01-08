@@ -251,6 +251,7 @@ export type AuthPayload = {
   refreshToken: Scalars['String']['output'];
   tenant: Scalars['String']['output'];
   token: Scalars['String']['output'];
+  tokenExpired: Scalars['DateTime']['output'];
   userId: Scalars['UUID']['output'];
 };
 
@@ -2858,7 +2859,6 @@ export type UserTenant = {
   gender: Gender;
   id: Scalars['UUID']['output'];
   lastName: Scalars['String']['output'];
-  password: Scalars['String']['output'];
   phoneNumber: Scalars['String']['output'];
   username: Scalars['String']['output'];
 };

@@ -6,7 +6,7 @@ export type LoginModel = {
   userId: string;
   token: string;
   refreshToken: string;
-  tokenExpires: string;
+  tokenExpired: string;
 };
 
 export type SessionModel = ProfileModel &

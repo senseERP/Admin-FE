@@ -698,6 +698,17 @@
             "args": []
           },
           {
+            "name": "tokenExpired",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Any"
+              }
+            },
+            "args": []
+          },
+          {
             "name": "userId",
             "type": {
               "kind": "NON_NULL",
@@ -7684,17 +7695,6 @@
           },
           {
             "name": "lastName",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Any"
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "password",
             "type": {
               "kind": "NON_NULL",
               "ofType": {

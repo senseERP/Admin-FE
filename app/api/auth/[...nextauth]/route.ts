@@ -83,7 +83,7 @@ export const config: NextAuthOptions = {
           userId: res.data?.loginTenant.userId,
           token: res.data?.loginTenant.token,
           refreshToken: res.data?.loginTenant.refreshToken,
-          tokenExpires: res.data?.loginTenant.tokenExpires,
+          tokenExpired: res.data?.loginTenant.tokenExpired,
           // ...res.data?.loginTenant,
           // ...fetchProfileResponse.data?.profileTenant,
         } as SessionModel;
@@ -103,7 +103,7 @@ export const config: NextAuthOptions = {
         return { ...token, ...user };
       }
       const currentDate = dayjs().unix();
-      const exp = dayjs((token as any).tokenExpires).unix();
+      const exp = dayjs((token as any).tokenExpired).unix();
       if (currentDate < exp) return token;
       // Refresh
       return await refreshAccessToken(token);

@@ -7,14 +7,14 @@ export type LoginMutationVariables = Types.Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', loginTenant: { __typename?: 'AuthPayload', userId: any, token: string, refreshToken: string, tenant: string } };
+export type LoginMutation = { __typename?: 'Mutation', loginTenant: { __typename?: 'AuthPayload', userId: any, token: string, refreshToken: string, tenant: string, tokenExpired: any } };
 
 export type RefreshTokenMutationVariables = Types.Exact<{
   input: Types.RefreshTokenInput;
 }>;
 
 
-export type RefreshTokenMutation = { __typename?: 'Mutation', refreshTokenTenant: { __typename?: 'AuthPayload', userId: any, token: string, refreshToken: string, tenant: string } };
+export type RefreshTokenMutation = { __typename?: 'Mutation', refreshTokenTenant: { __typename?: 'AuthPayload', userId: any, token: string, refreshToken: string, tenant: string, tokenExpired: any } };
 
 export type ProfileQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
@@ -29,6 +29,7 @@ export const LoginDocument = gql`
     token
     refreshToken
     tenant
+    tokenExpired
   }
 }
     `;
@@ -39,6 +40,7 @@ export const RefreshTokenDocument = gql`
     token
     refreshToken
     tenant
+    tokenExpired
   }
 }
     `;
