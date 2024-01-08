@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@shadcn/button";
 
 export default function Web() {
