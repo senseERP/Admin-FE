@@ -71,6 +71,7 @@
     "@tiptap/react": "^2.1.13",
     "@tiptap/starter-kit": "^2.1.13",
     "@uidotdev/usehooks": "^2.4.1",
+    "@urql/exchange-auth": "^2.1.6",
     "@urql/exchange-request-policy": "^1.0.2",
     "@urql/exchange-retry": "^1.2.0",
     "@urql/next": "^1.1.0",

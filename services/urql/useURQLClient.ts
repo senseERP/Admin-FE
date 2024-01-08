@@ -2,8 +2,9 @@ import { requestPolicyExchange } from "@urql/exchange-request-policy";
 import { retryExchange } from "@urql/exchange-retry";
 import { cacheExchange, createClient, fetchExchange, ssrExchange } from "@urql/next";
 import { useMemo } from "react";
+
 import GraphqlConfig from "common/graphql-config";
-import { subscriptionExchange } from "./exchanges";
+import { authExchange, subscriptionExchange } from "./exchanges";
 
 export default function useURQLClient() {
   const [client, ssr] = useMemo(() => {
@@ -17,6 +18,7 @@ export default function useURQLClient() {
         }),
         cacheExchange,
         ssr,
+        authExchange,
         retryExchange({
           initialDelayMs: GraphqlConfig.initialDelayMs,
           maxDelayMs: GraphqlConfig.maxDelayMs,

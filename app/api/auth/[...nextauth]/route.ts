@@ -33,7 +33,7 @@ const refreshAccessToken = async (token: JWT): Promise<JWT> => {
   return { ...token, id: res.data?.refreshTokenTenant.userId, ...res.data?.refreshTokenTenant };
 };
 
-export const config: NextAuthOptions = {
+const config: NextAuthOptions = {
   pages: {
     signIn: AppPath.login(),
     signOut: AppPath.signup(),
@@ -115,4 +115,6 @@ export const config: NextAuthOptions = {
   },
 };
 
-export default NextAuth(config);
+export const handler = NextAuth(config);
+
+export { handler as GET, handler as POST };
