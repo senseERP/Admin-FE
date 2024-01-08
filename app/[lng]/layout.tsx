@@ -1,10 +1,10 @@
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { dir } from "i18next";
 import { languages } from "app/i18n/settings";
+import { Language } from "types/language";
 
 import "@mantine/core/styles.css";
 import "styles/tailwind.css";
-import { Language } from "types/language";
 
 export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }));
