@@ -1,12 +1,16 @@
 import { requestPolicyExchange } from "@urql/exchange-request-policy";
 import { retryExchange } from "@urql/exchange-retry";
-import { cacheExchange, createClient, fetchExchange, ssrExchange } from "@urql/next";
+import { cacheExchange, createClient, Exchange, fetchExchange, ssrExchange } from "@urql/next";
 import { useMemo } from "react";
 
 import GraphqlConfig from "common/graphql-config";
 import { authExchange, subscriptionExchange } from "./exchanges";
 
-export default function useURQLClient() {
+type Props = {
+  hasAuth?: boolean;
+};
+
+export default function useURQLClient(props: Props | undefined = { hasAuth: true }) {
   const [client, ssr] = useMemo(() => {
     const ssr = ssrExchange();
     const client = createClient({
@@ -18,9 +22,11 @@ export default function useURQLClient() {
         }),
         cacheExchange,
         ssr,
-        authExchange({
-          isClient: true,
-        }),
+        props?.hasAuth
+          ? authExchange({
+              isClient: true,
+            })
+          : null,
         retryExchange({
           initialDelayMs: GraphqlConfig.initialDelayMs,
           maxDelayMs: GraphqlConfig.maxDelayMs,
@@ -30,12 +36,12 @@ export default function useURQLClient() {
         }),
         fetchExchange,
         subscriptionExchange,
-      ],
+      ].filter((ex) => ex !== null) as Exchange[],
       suspense: true,
     });
 
     return [client, ssr];
-  }, []);
+  }, [props?.hasAuth]);
 
   return [client, ssr] as [typeof client, typeof ssr];
 }

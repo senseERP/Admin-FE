@@ -1,7 +1,9 @@
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { dir } from "i18next";
+import { Toaster } from "@shadcn/sonner";
 import { languages } from "app/i18n/settings";
 import { Language } from "common/types/language";
+import AuthProvider from "services/context/AuthProvider";
 
 import "@mantine/core/styles.css";
 import "styles/tailwind.css";
@@ -25,7 +27,11 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body suppressHydrationWarning>
-        <MantineProvider>{children}</MantineProvider>
+        <AuthProvider>
+          <MantineProvider>{children}</MantineProvider>
+
+          <Toaster />
+        </AuthProvider>
       </body>
     </html>
   );

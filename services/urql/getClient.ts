@@ -1,19 +1,26 @@
 import { cacheExchange, createClient, fetchExchange } from "@urql/core";
+import { Exchange } from "@urql/next";
 import { registerUrql } from "@urql/next/rsc";
 import GraphqlConfig from "common/graphql-config";
 import { authExchange } from "./exchanges";
 
-export default function getClient() {
+type Props = {
+  hasAuth?: boolean;
+};
+
+export default function getClient(props: Props | undefined = { hasAuth: true }) {
   const { getClient: gc } = registerUrql(() =>
     createClient({
       url: GraphqlConfig.url,
       exchanges: [
         cacheExchange,
-        authExchange({
-          isClient: false,
-        }),
+        props?.hasAuth
+          ? authExchange({
+              isClient: false,
+            })
+          : null,
         fetchExchange,
-      ],
+      ].filter((ex) => ex !== null) as Exchange[],
     })
   );
 

@@ -2,5 +2,16 @@
   "tailwindCSS.experimental.classRegex": [
     ["cva(?:<[^>]*>)?(([^)]*))", "[\"'`]([^\"'`]*).*?[\"'`]", "(?:twMerge|twJoin)\\(([^\\);]*)[\\);]"]
   ],
-  "cSpell.words": ["clsx", "Intelomics", "mantine", "Pokemons", "shadcn", "tailwindcss", "urql"]
+  "cSpell.words": [
+    "clsx",
+    "hookform",
+    "Intelomics",
+    "mantine",
+    "Pokemons",
+    "shadcn",
+    "sonner",
+    "tabler",
+    "tailwindcss",
+    "urql"
+  ]
 }
