@@ -2,7 +2,7 @@
 import { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
-  schema: "https://trygql.formidable.dev/graphql/basic-pokedex",
+  schema: "https://mrkool.online:7002/graphql/",
   documents: "services/graphql/*.graphql",
   generates: {
     // generate types.ts

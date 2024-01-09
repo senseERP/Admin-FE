@@ -1,5 +1,5 @@
 const config = {
-  schema: ["https://trygql.formidable.dev/graphql/basic-pokedex", "services/graphql/*.graphql"],
-}
+  schema: ["https://mrkool.online:7002/graphql/", "services/graphql/*.graphql"],
+};
 
-export default config
+export default config;

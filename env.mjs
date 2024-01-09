@@ -1,5 +1,5 @@
-import { createEnv } from "@t3-oss/env-nextjs"
-import { z } from "zod"
+import { createEnv } from "@t3-oss/env-nextjs";
+import { z } from "zod";
 
 export const env = createEnv({
   server: {
@@ -9,6 +9,8 @@ export const env = createEnv({
       .transform((value) => value === "true"),
     NEXT_PUBLIC_GRAPHQL_URL: z.string().url(),
     NEXT_PUBLIC_GRAPHQL_WS_URL: z.string().url(),
+    SESSION_SECRET: z.string(),
+    TOKEN_EXPIRATION: z.number().int().positive(),
   },
   client: {
     NEXT_PUBLIC_GRAPHQL_URL: z.string().url(),
@@ -18,5 +20,7 @@ export const env = createEnv({
     ANALYZE: process.env.ANALYZE,
     NEXT_PUBLIC_GRAPHQL_URL: process.env.NEXT_PUBLIC_GRAPHQL_URL,
     NEXT_PUBLIC_GRAPHQL_WS_URL: process.env.NEXT_PUBLIC_GRAPHQL_WS_URL,
+    SESSION_SECRET: process.env.SESSION_SECRET,
+    TOKEN_EXPIRATION: parseInt(process.env.TOKEN_EXPIRATION),
   },
-})
+});
