@@ -16,3 +16,7 @@ export function useRefreshTokenMutation() {
 export function useProfileQuery(options?: Omit<Urql.UseQueryArgs<Operations.ProfileQueryVariables>, 'query'>) {
   return Urql.useQuery<Operations.ProfileQuery, Operations.ProfileQueryVariables>({ query: Operations.ProfileDocument, ...options });
 };
+
+export function useLoggedCheckQuery(options?: Omit<Urql.UseQueryArgs<Operations.LoggedCheckQueryVariables>, 'query'>) {
+  return Urql.useQuery<Operations.LoggedCheckQuery, Operations.LoggedCheckQueryVariables>({ query: Operations.LoggedCheckDocument, ...options });
+};

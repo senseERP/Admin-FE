@@ -18,7 +18,9 @@ export default function useURQLClient() {
         }),
         cacheExchange,
         ssr,
-        authExchange,
+        authExchange({
+          isClient: true,
+        }),
         retryExchange({
           initialDelayMs: GraphqlConfig.initialDelayMs,
           maxDelayMs: GraphqlConfig.maxDelayMs,

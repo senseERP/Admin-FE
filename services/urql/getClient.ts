@@ -7,7 +7,13 @@ export default function getClient() {
   const { getClient: gc } = registerUrql(() =>
     createClient({
       url: GraphqlConfig.url,
-      exchanges: [cacheExchange, authExchange, fetchExchange],
+      exchanges: [
+        cacheExchange,
+        authExchange({
+          isClient: false,
+        }),
+        fetchExchange,
+      ],
     })
   );
 

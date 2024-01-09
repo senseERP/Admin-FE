@@ -33,3 +33,9 @@ query Profile {
     phoneNumber
   }
 }
+
+query LoggedCheck {
+  profileTenant {
+    id
+  }
+}

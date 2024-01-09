@@ -21,6 +21,11 @@ export type ProfileQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 export type ProfileQuery = { __typename?: 'Query', profileTenant?: { __typename?: 'UserTenant', id: any, username: string, gender: Types.Gender, dateOfBirth: any, firstName: string, lastName: string, fullName: string, email: string, emailConfirmed: boolean, address?: string | null, phoneNumber: string } | null };
 
+export type LoggedCheckQueryVariables = Types.Exact<{ [key: string]: never; }>;
+
+
+export type LoggedCheckQuery = { __typename?: 'Query', profileTenant?: { __typename?: 'UserTenant', id: any } | null };
+
 
 export const LoginDocument = gql`
     mutation Login($input: LoginInput!) {
@@ -58,6 +63,13 @@ export const ProfileDocument = gql`
     emailConfirmed
     address
     phoneNumber
+  }
+}
+    `;
+export const LoggedCheckDocument = gql`
+    query LoggedCheck {
+  profileTenant {
+    id
   }
 }
     `;

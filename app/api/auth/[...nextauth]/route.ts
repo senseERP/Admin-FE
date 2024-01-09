@@ -56,8 +56,6 @@ const config: NextAuthOptions = {
           },
         });
 
-        console.log("login", res.data, res.error);
-
         if (res.error) {
           return null;
         }
