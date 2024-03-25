@@ -2,7 +2,7 @@
 import { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
-  schema: "https://mrkool.online:7002/graphql/",
+  schema: "https://intelomics.net:7002/graphql/",
   documents: "services/graphql/*.graphql",
   generates: {
     // generate types.ts
