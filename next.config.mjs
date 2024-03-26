@@ -9,7 +9,7 @@ const config = withPlugins([[withBundleAnalyzer({ enabled: env.ANALYZE })]], {
   reactStrictMode: true,
   experimental: {
     instrumentationHook: true,
-    optimizePackageImports: ["@mantine/core", "@mantine/hooks", "@mantine/dropzone", "@mantine/tiptap"],
+    optimizePackageImports: ["@mantine/core", "@mantine/tiptap"],
   },
   rewrites() {
     return [
